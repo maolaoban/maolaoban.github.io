@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://maolaoban.github.io/</id>
+    <title>Mao&apos;s Blog</title>
+    <updated>2021-04-06T03:42:41.353Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://maolaoban.github.io/"/>
+    <link rel="self" href="https://maolaoban.github.io/atom.xml"/>
+    <subtitle>毛老板的博客</subtitle>
+    <logo>https://maolaoban.github.io/images/avatar.png</logo>
+    <icon>https://maolaoban.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Mao&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[重新开始的第一篇博客]]></title>
+        <id>https://maolaoban.github.io/post/hello-start/</id>
+        <link href="https://maolaoban.github.io/post/hello-start/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>祝你今天愉快😘</p>
+]]></content>
+    </entry>
+</feed>
