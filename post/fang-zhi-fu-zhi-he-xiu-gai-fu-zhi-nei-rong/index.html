@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891119618">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891943559">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://maolaoban.github.io/">
-        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891119618" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891943559" alt="" width="32px" height="32px">
       </a>
       <a href="https://maolaoban.github.io/">
         <h1 class="site-title">Mao&#39;s Blog</h1>
@@ -90,13 +90,14 @@
           </div>
           <div class="post-content">
             <ul>
-<li>
-<p>不想要别人复制网页内容可以使用：</p>
-<p>p{<br>
-user-select:none;<br>
--webkit-user-select:none;<br>
-}</p>
-</li>
+<li>不想要别人复制网页内容可以使用：</li>
+</ul>
+<pre><code>    p{
+        user-select:none;
+        -webkit-user-select:none;
+    }
+</code></pre>
+<ul>
 <li>
 <p>修改复制的内容，就像一些网页，复制的时候会加入版权信息</p>
  <p>
@@ -105,18 +106,19 @@ user-select:none;<br>
      I'm maolaoban.
      I'm maolaoban.
  </p>
- <script>
-     document.addEventListener('copy',function(event){
-         let clipboardData = event.clipboardData || window.clipboardData;
-         var copy = window.getSelection().toString();
-         if(copy){
-             event.preventDefault();
-             copy += '-----版权所属:maolaoban.---www.mddddddx.work------';
-             clipboardData.setData('text/plain',copy);
-         }
-     })
- </script></li>
+</li>
 </ul>
+<pre><code class="language-javascript">    &lt;script&gt;
+        document.addEventListener('copy',function(event){
+            let clipboardData = event.clipboardData || window.clipboardData;
+            var copy = window.getSelection().toString();
+            if(copy){
+                event.preventDefault();
+                copy += '-----版权所属:maolaoban.---www.mddddddx.work------';
+                clipboardData.setData('text/plain',copy);
+            }
+        })
+    &lt;/script&gt;</code></pre>
 
           </div>
         </div>

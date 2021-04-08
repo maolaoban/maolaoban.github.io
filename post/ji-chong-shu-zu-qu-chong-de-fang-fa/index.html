@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891119618">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891943559">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://maolaoban.github.io/">
-        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891119618" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891943559" alt="" width="32px" height="32px">
       </a>
       <a href="https://maolaoban.github.io/">
         <h1 class="site-title">Mao&#39;s Blog</h1>
@@ -89,61 +89,62 @@
             
           </div>
           <div class="post-content">
-            <pre><code>var arr = [1,23,5,6,7,1,4,5,6,'23',4];
-    //ES6 Set去重
-    console.log([...new Set(arr)]);
+            <pre><code class="language-javascript">    var arr = [1,23,5,6,7,1,4,5,6,'23',4];
+</code></pre>
+<pre><code class="language-javascript">        //ES6 Set去重
+        console.log([...new Set(arr)]);
 
-    //双层for循环，splice删去重复的
-    function unique(arr){
-        for(var i = 0; i &lt; arr.length; i++){
-            for(var j = i+1; j &lt; arr.length; j++){
-                if(arr[i] === arr[j]){
-                    arr.splice(j,1);
-                    j--;
+        //双层for循环，splice删去重复的
+        function unique(arr){
+            for(var i = 0; i &lt; arr.length; i++){
+                for(var j = i+1; j &lt; arr.length; j++){
+                    if(arr[i] === arr[j]){
+                        arr.splice(j,1);
+                        j--;
+                    }
                 }
             }
+            return arr;
         }
-        return arr;
-    }
-    console.log(unique(arr));
+        console.log(unique(arr));
 
-    //利用indexOf去重
-    //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
-    //没有出现返回-1
-    function unique(arr){
-        var array = [];
-        for(var i = 0; i &lt; arr.length; i++){
-            if(array.indexOf(arr[i]) === -1){
-                array.push(arr[i])
+        //利用indexOf去重
+        //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+        //没有出现返回-1
+        function unique(arr){
+            var array = [];
+            for(var i = 0; i &lt; arr.length; i++){
+                if(array.indexOf(arr[i]) === -1){
+                    array.push(arr[i])
+                }
             }
+            return array;
         }
-        return array;
-    }
-    console.log(unique(arr));
+        console.log(unique(arr));
 
-    //使用includes去重
-    function unique(arr){
-        var array = [];
-        for(var i = 0; i &lt; arr.length; i++){
-            if(!array.includes(arr[i])){
-                array.push(arr[i])
+        //使用includes去重
+        function unique(arr){
+            var array = [];
+            for(var i = 0; i &lt; arr.length; i++){
+                if(!array.includes(arr[i])){
+                    array.push(arr[i])
+                }
             }
+            return array;
         }
-        return array;
-    }
-    console.log(unique(arr));
+        console.log(unique(arr));
 
-    //使用reduce去重
-    //reduce里的function(prev,cur,index,init):
-    //prev 表示上一次调用回调时的返回值，或者初始值 init; 必需
-    //cur 表示当前正在处理的数组元素； 必需
-    //index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；可选
-    //init 表示初始值。可选
-    //reduce(fun,initialValue)最后可传递一个初始值initialValue
-    function unique(arr){
-        return arr.reduce((pre,cur) =&gt; pre.includes(cur) ? pre : [...pre,cur],[]);
-    }
-    console.log(unique(arr));</code></pre>
+        //使用reduce去重
+        //reduce里的function(prev,cur,index,init):
+        //prev 表示上一次调用回调时的返回值，或者初始值 init; 必需
+        //cur 表示当前正在处理的数组元素； 必需
+        //index 表示当前正在处理的数组元素的索引，若提供 init 值，则索引为0，否则索引为1；可选
+        //init 表示初始值。可选
+        //reduce(fun,initialValue)最后可传递一个初始值initialValue
+        function unique(arr){
+            return arr.reduce((pre,cur) =&gt; pre.includes(cur) ? pre : [...pre,cur],[]);
+        }
+        console.log(unique(arr));</code></pre>
 
           </div>
         </div>

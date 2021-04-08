@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891119618">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891943559">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://maolaoban.github.io/">
-        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891119618" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891943559" alt="" width="32px" height="32px">
       </a>
       <a href="https://maolaoban.github.io/">
         <h1 class="site-title">Mao&#39;s Blog</h1>
@@ -88,15 +88,15 @@
           <div class="post-content">
             <p><strong>1. HTML5自定义属性</strong><br>
 在HTML5中提供了自定义属性，使用&quot;data-&quot;开头写在标签里，例如：</p>
-<pre><code>&lt;div data-name=&quot;maolaoban&quot;&gt;&lt;/div&gt;
+<pre><code class="language-javascript">    &lt;div data-name=&quot;maolaoban&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>在js中定义属性或者读取属性</p>
-<pre><code>var div = document.querySelector(&quot;div&quot;);
-//自定义
-div.dataset.age = 20;
-//读取
-console.log(div.dataset.name);//div.dataset['name']
-console.log(div.dataset.age);
+<pre><code class="language-javascript">    var div = document.querySelector(&quot;div&quot;);
+    //自定义
+    div.dataset.age = 20;
+    //读取
+    console.log(div.dataset.name);//div.dataset['name']
+    console.log(div.dataset.age);
 </code></pre>
 <p>自定义属性规范：<br>
 1.data-开头；<br>
@@ -106,48 +106,48 @@ console.log(div.dataset.age);
 2.名称中不要包含任何的特殊符号；<br>
 3.名称不要纯数值</p>
 <p><strong>2. Vue事件委托</strong></p>
-<pre><code>&lt;body&gt;
-&lt;div id=&quot;app&quot;&gt;
-    &lt;ul @click=&quot;popName&quot;&gt;
-        &lt;li v-for=&quot;(item,index) in list&quot; :data-index=&quot;index&quot;&gt;{{item.name}}:{{item.age}}&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:'#app',
-        data:{
-            list:[
-                {
-                    name:'mao',
-                    age:20
-                },
-                {
-                    name:'lao',
-                    age:21
+<pre><code class="language-javascript">    &lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;ul @click=&quot;popName&quot;&gt;
+            &lt;li v-for=&quot;(item,index) in list&quot; :data-index=&quot;index&quot;&gt;{{item.name}}:{{item.age}}&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        var app = new Vue({
+            el:'#app',
+            data:{
+                list:[
+                    {
+                        name:'mao',
+                        age:20
+                    },
+                    {
+                        name:'lao',
+                        age:21
+                    }
+                    ,{
+                        name:'ban',
+                        age:22
+                    }
+                    ,{
+                        name:'ha',
+                        age:23
+                    }
+                ]
+            },
+            methods: {
+                popName(event){
+                    var e = event || window.event;
+                    var target = e.target || e.srcElement;
+                    if(target.nodeName.toLowerCase() == 'li'){
+                        console.log(this.list[e.target.dataset.index].name);
+                    }
                 }
-                ,{
-                    name:'ban',
-                    age:22
-                }
-                ,{
-                    name:'ha',
-                    age:23
-                }
-            ]
-        },
-        methods: {
-            popName(event){
-                var e = event || window.event;
-                var target = e.target || e.srcElement;
-                if(target.nodeName.toLowerCase() == 'li'){
-                    console.log(this.list[e.target.dataset.index].name);
-                }
-            }
-        },
-    })
-&lt;/script&gt;
-&lt;/body&gt;
+            },
+        })
+    &lt;/script&gt;
+    &lt;/body&gt;
 </code></pre>
 
           </div>
