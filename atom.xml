@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://maolaoban.github.io/</id>
     <title>Mao&apos;s Blog</title>
-    <updated>2021-04-06T05:38:02.969Z</updated>
+    <updated>2021-04-08T13:44:24.932Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://maolaoban.github.io/"/>
     <link rel="self" href="https://maolaoban.github.io/atom.xml"/>
@@ -11,12 +11,317 @@
     <icon>https://maolaoban.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Mao&apos;s Blog</rights>
     <entry>
-        <title type="html"><![CDATA[重新开始的第一篇博客]]></title>
-        <id>https://maolaoban.github.io/post/hello-start/</id>
-        <link href="https://maolaoban.github.io/post/hello-start/">
+        <title type="html"><![CDATA[HTML页面原生的声明周期事件]]></title>
+        <id>https://maolaoban.github.io/post/html-ye-mian-yuan-sheng-de-sheng-ming-zhou-qi-shi-jian/</id>
+        <link href="https://maolaoban.github.io/post/html-ye-mian-yuan-sheng-de-sheng-ming-zhou-qi-shi-jian/">
         </link>
-        <updated>2021-04-06T05:23:28.000Z</updated>
-        <content type="html"><![CDATA[<p>祝你今天愉快😘</p>
+        <updated>2021-04-08T09:28:58.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>
+<p><strong>DOMContentLoaded</strong> —— 浏览器已完全加载 HTML，并构建了 DOM 树，但像&lt;img&gt;和样式表之类的外部资源可能尚未加载完成。可以查找DOM节点，并初始化接口。</p>
+</li>
+<li>
+<p><strong>load</strong> —— 浏览器不仅加载完成了 HTML，还加载完成了所有外部资源：图片，样式等。</p>
+</li>
+<li>
+<p><strong>beforeunload</strong> —— 用户正在离开：我们可以检查用户是否保存了更改，并询问他是否真的要离开。</p>
+</li>
+<li>
+<p><strong>unload</strong> —— 用户几乎已经离开了，但是我们仍然可以启动一些操作，例如发送统计数据。</p>
+<pre><code> document.addEventListener(&quot;DOMContentLoaded&quot;,()=&gt;{
+
+ })
+</code></pre>
+</li>
+</ul>
+<p>####window.onload</p>
+<ul>
+<li>
+<p>当整个页面，包括样式、图片和其它资源被完全加载完成时，会触发window对象上的load事件。</p>
+<pre><code>window.onload = function(){
+    alert('page loaded');
+}
+</code></pre>
+<p>####window.onunload</p>
+</li>
+<li>
+<p>当访问者离开页面时，window 对象上的 unload 事件就会被触发。我们可以在那里做一些不涉及延迟的操作，例如关闭相关的弹出窗口。<br>
+####window.onbeforeunload</p>
+</li>
+<li>
+<p>如果访问者触发了离开页面的导航（navigation）或试图关闭窗口，beforeunload 处理程序将要求进行更多确认.</p>
+</li>
+</ul>
+<p>####readyState<br>
+<code>document.readyState</code> 属性可以为我们提供当前加载状态的信息。<br>
+它有3个可能值：</p>
+<ul>
+<li><code>loading</code> 文档正在被加载。</li>
+<li><code>interactive</code> 文档被全部读取。</li>
+<li><code>complete</code> 文档被全部读取，并且所有资源（例如图片等）都已加载完成。</li>
+</ul>
+<p>我们可以检查 document.readyState 并设置一个处理程序，或在代码准备就绪时立即执行它。</p>
+<pre><code>if(document.readyState == 'loading){
+    document.addEventListener('DOMContentLoaded', ()=&gt;{
+
+    });
+}else{
+
+}
+</code></pre>
+<p>还有一个 readystatechange 事件，会在状态发生改变时触发。</p>
+<pre><code>document.addEventListener('readystatechange',()=&gt;{
+    console.log(document.readyState);
+})</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[自动全局引入组件]]></title>
+        <id>https://maolaoban.github.io/post/zi-dong-quan-ju-yin-ru-zu-jian/</id>
+        <link href="https://maolaoban.github.io/post/zi-dong-quan-ju-yin-ru-zu-jian/">
+        </link>
+        <updated>2021-04-08T09:27:59.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">// 基础组件的自动化全局注册
+import Vue from 'vue'
+const requireComponent = require.context(
+    // 其组件目录的相对路径
+    './',
+    // 是否查询其子目录
+    true,
+    // 匹配基础组件文件名的正则表达式
+    /\.vue$/
+  )
+  requireComponent.keys().forEach(fileName =&gt; {
+    // 获取组件配置
+    const componentConfig = requireComponent(fileName)
+    // 全局注册组件
+    Vue.component(
+        componentConfig.default.name,   // 此处的name,是组件属性定义的name
+        // 如果这个组件选项是通过 `export default` 导出的，
+        // 那么就会优先使用 `.default`，
+        // 否则回退到使用模块的根。
+        componentConfig.default
+    )
+  })
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[数组扁平化去除重复数据]]></title>
+        <id>https://maolaoban.github.io/post/shu-zu-bian-ping-hua-qu-chu-chong-fu-shu-ju/</id>
+        <link href="https://maolaoban.github.io/post/shu-zu-bian-ping-hua-qu-chu-chong-fu-shu-ju/">
+        </link>
+        <updated>2021-04-08T09:24:24.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">let arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+ //Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维数组.
+//flat()默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将flat()方法的参数写成一个整数
+ //不管有多少层嵌套，都要转成一维数组，可以用Infinity关键字作为参数
+Array.from(new Set(arr.flat(Infinity))).sort((a,b)=&gt;{ return a-b});
+
+//去重
+arr.filter((item, i)=&gt; arr.indexOf(item) === i)</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[css超出n行省略]]></title>
+        <id>https://maolaoban.github.io/post/css-chao-chu-n-xing-sheng-lue/</id>
+        <link href="https://maolaoban.github.io/post/css-chao-chu-n-xing-sheng-lue/">
+        </link>
+        <updated>2021-04-08T09:22:35.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-css">display: -webkit-box; 
+-webkit-box-orient: vertical; 
+-webkit-line-clamp: 3; 
+overflow: hidden;
+text-overflow:ellipsis;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[defer、async和动态脚本]]></title>
+        <id>https://maolaoban.github.io/post/deferasync-he-dong-tai-jiao-ben/</id>
+        <link href="https://maolaoban.github.io/post/deferasync-he-dong-tai-jiao-ben/">
+        </link>
+        <updated>2021-04-08T09:22:07.000Z</updated>
+        <content type="html"><![CDATA[<p>当浏览器加载HTML遇到<script>...</script>时，便会停止DOM构建，去加载script。</p>
+<p>下载执行之后，才能继续处理。</p>
+<p>这会导致两个重要的问题：</p>
+<ol>
+<li>脚本不能访问到位于它们下面的 DOM 元素，因此，脚本无法给它们添加处理程序等。</li>
+<li>如果页面顶部有一个笨重的脚本，它会“阻塞页面”。在该脚本下载并执行结束前，用户都不能看到页面内容。</li>
+</ol>
+<p>常用的解决方法是将script标签放到页面的底部。当网络较差是也会有一些问题。</p>
+<ul>
+<li>
+<p><code>defer</code>特性告诉浏览器不需要等待脚本，继续处理HTML，脚本会在“后台”下载，扥DOM构建完成之后，再执行脚本。<code>defer</code>特性适用于外部脚本。</p>
+<p><strong>文档顺序</strong>（它们在文档中的顺序）</p>
+<p>在文档加载和解析完成之后（如果需要，则会等待），即在 <code>DOMContentLoaded</code> 之前执行。</p>
+</li>
+<li>
+<p><code>async</code>类似<code>defer</code></p>
+<p><strong>加载优先顺序</strong>。脚本在文档中的顺序不重要 —— 先加载完成的先执行</p>
+<p>可能在文档加载完成前加载并执行完毕。如果脚本很小或者来自于缓存，同时文档足够长，就会发生这种情况。</p>
+</li>
+</ul>
+<p>在script里动态的创建一个脚本：</p>
+<pre><code class="language-js">let script = document.createElement('script');
+script.src = &quot;/article/script-async-defer/long.js&quot;;
+document.body.append(script);
+</code></pre>
+<p>当脚本被添加到文档时就会立即开始加载。</p>
+<p>默认情况下，动态脚本的行为是异步的。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vue钩子函数清除定时器]]></title>
+        <id>https://maolaoban.github.io/post/vue-gou-zi-han-shu-qing-chu-ding-shi-qi/</id>
+        <link href="https://maolaoban.github.io/post/vue-gou-zi-han-shu-qing-chu-ding-shi-qi/">
+        </link>
+        <updated>2021-04-08T09:21:24.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">this.$once('hook:beforeDestroy',()=&gt;{
+      clearInterval(timer);
+})</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ios和android关于new Date()兼容性差异]]></title>
+        <id>https://maolaoban.github.io/post/ios-he-android-guan-yu-new-datejian-rong-xing-chai-yi/</id>
+        <link href="https://maolaoban.github.io/post/ios-he-android-guan-yu-new-datejian-rong-xing-chai-yi/">
+        </link>
+        <updated>2021-04-08T09:19:24.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">Android ：new Date('2021-01-22 14:25:20').getTime();
+
+ios : new Date('2021/01/22 14:25:20').getTime();
+</code></pre>
+<pre><code>&quot;2021-01-22 14:25:20&quot;.replace(/-/g, &quot;/&quot;)  ==&gt; '2021/01/22 14:25:20'
+
+ios上不能写24:00:00，new Date('2021/01/22 24:00:00').getTime()  ==&gt; NaN</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[js下载文件]]></title>
+        <id>https://maolaoban.github.io/post/js-xia-zai-wen-jian/</id>
+        <link href="https://maolaoban.github.io/post/js-xia-zai-wen-jian/">
+        </link>
+        <updated>2021-04-08T09:15:40.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-html">    &lt;textarea name=&quot;&quot; id=&quot;text&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+    &lt;button  onclick=&quot;downloadFile('text')&quot;&gt;下载文本&lt;/button&gt;
+    &lt;button onclick=&quot;downloadFile('json')&quot;&gt;下载JSON&lt;/button&gt;
+    &lt;button onclick=&quot;downloadWord()&quot;&gt;下载Word&lt;/button&gt;
+</code></pre>
+<pre><code class="language-javascript">    function downloadFile(type){
+        let value = document.querySelector('#text').value;
+        if(type === 'text'){
+            downloadByContent(value,'hello.text','text/plain');
+        }else{
+            downloadByContent(value,'hello.json','application/json');
+        }
+    }
+    function downloadWord(){
+        const template = '&lt;html xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; '
+            +'xmlns:x=&quot;urn:schemas-microsoft-com:office:word&quot; '
+            +'xmlns=&quot;http://www.w3.org/TR/REC-html40&quot;&gt;'
+            +'&lt;head&gt;'
+            +'&lt;/head&gt;'
+            +'&lt;body&gt;{table}&lt;\/body&gt;'
+            +'&lt;\/html&gt;';
+        const context = template.replace('{table}', document.querySelector('#text').value);
+        downloadByContent(context, 'hello.doc', 'application/msword');
+    }
+    function downloadByContent(content, filename, type) {
+        const aTag = document.createElement('a');
+        aTag.download = filename;
+        const blob = new Blob([content],{type});
+        const blobUrl = URL.createObjectURL(blob);
+        aTag.href = blobUrl;
+        aTag.click();
+        URL.revokeObjectURL(blob);
+    }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[no-cache和no-store]]></title>
+        <id>https://maolaoban.github.io/post/no-cache-he-no-store/</id>
+        <link href="https://maolaoban.github.io/post/no-cache-he-no-store/">
+        </link>
+        <updated>2021-04-08T09:13:23.000Z</updated>
+        <content type="html"><![CDATA[<p><code>no-cache</code> 和 <code>no-store</code> 用作控制缓存，被服务器通过响应头 <code>Cache-Control</code>传递给客户端</p>
+<h2 id="no-store"><strong><code>no-store</code></strong></h2>
+<p><strong>「永远都不要在客户端存储资源」</strong>，每次永远都要从原始服务器获取资源</p>
+<h2 id="no-cache"><strong><code>no-cache</code></strong></h2>
+<p>可以在客户端存储资源，但每次都**「必须去服务器做新鲜度校验」**，来决定从服务器获取最新资源 (200) 还是从客户端读取缓存 (304)，即所谓的协商缓存</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[textarea高度自适应]]></title>
+        <id>https://maolaoban.github.io/post/textarea-gao-du-zi-gua-ying/</id>
+        <link href="https://maolaoban.github.io/post/textarea-gao-du-zi-gua-ying/">
+        </link>
+        <updated>2021-04-08T09:03:12.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-css">        .box{
+
+​            width: 200px;
+
+​            font-size: 18px;
+
+​        }
+
+​        .text{
+
+​            min-height: 54px;
+
+​            height: 54px;
+
+​            display: block;
+
+​            resize: vertical;
+
+​            padding: 5px 15px;
+
+​            line-height: 1.5;
+
+​            box-sizing: border-box;
+
+​            width: 100%;
+
+​            font-size: inherit;
+
+​            color: #606266;
+
+​            background-color: #fff;
+
+​            background-image: none;
+
+​            border: 1px solid #dcdfe6;
+
+​            border-radius: 4px;
+
+​            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+​        }
+</code></pre>
+<pre><code class="language-html">    &lt;div class=&quot;box&quot;&gt;
+        &lt;textarea id=&quot;myTextarea&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;
+​    &lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">        let text = document.getElementById('myTextarea');
+
+​        text.addEventListener('input',function(e){
+
+​            const scrollHeight = text.scrollHeight
+
+​            const style = getComputedStyle(text)
+
+​            const borderTop = parseInt(style.borderTopWidth)
+
+​            const borderBottom = parseInt(style.borderBottomWidth)
+
+​            const height = scrollHeight + borderTop + borderBottom;
+
+​            text.style.height = height + 'px';
+
+​        })
+</code></pre>
 ]]></content>
     </entry>
 </feed>

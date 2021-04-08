@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>字符串的一些操作技巧 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,98 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">字符串的一些操作技巧</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <ul>
+<li>
+<p>如何多次赋值一个字符串</p>
+<pre><code>let a = 's'.repeat(3);
+console.log(a);//&quot;sss&quot;
+</code></pre>
+</li>
+<li>
+<p>如何填充一个字符串到指定长度</p>
+<pre><code>let a = '01'.padStart(8,'0');
+//&quot;00000001&quot;
+
+let b = '91'.padEnd(6,'*');
+//'91****'
+</code></pre>
+</li>
+<li>
+<p>字符串拆分成数组</p>
+<pre><code>let word = 'hello';
+let arr = [...word];
+//[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
+</code></pre>
+</li>
+<li>
+<p>反转字符串</p>
+<pre><code>let word = 'hello';
+let reword = [...word].reverse().join(&quot;&quot;);
+//&quot;olleh&quot;
+</code></pre>
+</li>
+<li>
+<p>字符串首字母大写</p>
+<pre><code>let word = 'apply';
+word = word[0].toUpperCase() + word.substr(1);
+console.log(word) 
+// &quot;Apple&quot;
+</code></pre>
+</li>
+<li>
+<p>如何在多个分隔符上分割字符串<br>
+split()配合正则表达式</p>
+<pre><code>  const list = &quot;apples,bananas;cherries&quot;;
+  const fruits = list.split(/[,;]/)
+  console.log(fruits); 
+  // [&quot;apples&quot;, &quot;bananas&quot;, &quot;cherries&quot;]
+</code></pre>
+</li>
+<li>
+<p>如何检查字符串是否包含特定序列</p>
+<pre><code>let text = 'hello world! My name is mao';
+console.log(text.includes('mao'));
+//true
+</code></pre>
+</li>
+<li>
+<p>如何检查字符串是否已特定序列开头或结尾</p>
+<pre><code>const text = &quot;Hello, world! My name is Kai!&quot;;
+console.log(text.startsWith(&quot;Hello&quot;)); 
+// true
+console.log(text.endsWith(&quot;world&quot;)); 
+// false
+</code></pre>
+</li>
+<li>
+<p>替换所以出现的字符串</p>
+<pre><code>const text = &quot;I like apples. You like apples.&quot;;
+console.log(text.replace(/apples/g, &quot;bananas&quot;));
+// &quot;I like bananas. You like bananas.&quot;
+console.log(text.replaceAll(&quot;apples&quot;, &quot;bananas&quot;));
+// &quot;I lik
+</code></pre>
+</li>
+</ul>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/hello-start/">
+              <h3 class="post-title">
+                下一篇：重新开始的第一篇博客
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

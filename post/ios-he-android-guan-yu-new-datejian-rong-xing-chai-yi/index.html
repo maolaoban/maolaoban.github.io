@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>ios和android关于new Date()兼容性差异 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,32 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">ios和android关于new Date()兼容性差异</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <pre><code class="language-javascript">Android ：new Date('2021-01-22 14:25:20').getTime();
+
+ios : new Date('2021/01/22 14:25:20').getTime();
+</code></pre>
+<pre><code>&quot;2021-01-22 14:25:20&quot;.replace(/-/g, &quot;/&quot;)  ==&gt; '2021/01/22 14:25:20'
+
+ios上不能写24:00:00，new Date('2021/01/22 24:00:00').getTime()  ==&gt; NaN</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/js-xia-zai-wen-jian/">
+              <h3 class="post-title">
+                下一篇：js下载文件
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

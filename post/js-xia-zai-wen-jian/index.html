@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>js下载文件 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,59 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">js下载文件</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <pre><code class="language-html">    &lt;textarea name=&quot;&quot; id=&quot;text&quot; cols=&quot;30&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+    &lt;button  onclick=&quot;downloadFile('text')&quot;&gt;下载文本&lt;/button&gt;
+    &lt;button onclick=&quot;downloadFile('json')&quot;&gt;下载JSON&lt;/button&gt;
+    &lt;button onclick=&quot;downloadWord()&quot;&gt;下载Word&lt;/button&gt;
+</code></pre>
+<pre><code class="language-javascript">    function downloadFile(type){
+        let value = document.querySelector('#text').value;
+        if(type === 'text'){
+            downloadByContent(value,'hello.text','text/plain');
+        }else{
+            downloadByContent(value,'hello.json','application/json');
+        }
+    }
+    function downloadWord(){
+        const template = '&lt;html xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; '
+            +'xmlns:x=&quot;urn:schemas-microsoft-com:office:word&quot; '
+            +'xmlns=&quot;http://www.w3.org/TR/REC-html40&quot;&gt;'
+            +'&lt;head&gt;'
+            +'&lt;/head&gt;'
+            +'&lt;body&gt;{table}&lt;\/body&gt;'
+            +'&lt;\/html&gt;';
+        const context = template.replace('{table}', document.querySelector('#text').value);
+        downloadByContent(context, 'hello.doc', 'application/msword');
+    }
+    function downloadByContent(content, filename, type) {
+        const aTag = document.createElement('a');
+        aTag.download = filename;
+        const blob = new Blob([content],{type});
+        const blobUrl = URL.createObjectURL(blob);
+        aTag.href = blobUrl;
+        aTag.click();
+        URL.revokeObjectURL(blob);
+    }
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/no-cache-he-no-store/">
+              <h3 class="post-title">
+                下一篇：no-cache和no-store
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

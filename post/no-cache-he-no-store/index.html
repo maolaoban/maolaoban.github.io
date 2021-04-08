@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>no-cache和no-store | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,30 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">no-cache和no-store</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <p><code>no-cache</code> 和 <code>no-store</code> 用作控制缓存，被服务器通过响应头 <code>Cache-Control</code>传递给客户端</p>
+<h2 id="no-store"><strong><code>no-store</code></strong></h2>
+<p><strong>「永远都不要在客户端存储资源」</strong>，每次永远都要从原始服务器获取资源</p>
+<h2 id="no-cache"><strong><code>no-cache</code></strong></h2>
+<p>可以在客户端存储资源，但每次都**「必须去服务器做新鲜度校验」**，来决定从服务器获取最新资源 (200) 还是从客户端读取缓存 (304)，即所谓的协商缓存</p>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/textarea-gao-du-zi-gua-ying/">
+              <h3 class="post-title">
+                下一篇：textarea高度自适应
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

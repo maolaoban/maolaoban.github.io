@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>textarea高度自适应 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,89 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">textarea高度自适应</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <pre><code class="language-css">        .box{
+
+​            width: 200px;
+
+​            font-size: 18px;
+
+​        }
+
+​        .text{
+
+​            min-height: 54px;
+
+​            height: 54px;
+
+​            display: block;
+
+​            resize: vertical;
+
+​            padding: 5px 15px;
+
+​            line-height: 1.5;
+
+​            box-sizing: border-box;
+
+​            width: 100%;
+
+​            font-size: inherit;
+
+​            color: #606266;
+
+​            background-color: #fff;
+
+​            background-image: none;
+
+​            border: 1px solid #dcdfe6;
+
+​            border-radius: 4px;
+
+​            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+
+​        }
+</code></pre>
+<pre><code class="language-html">    &lt;div class=&quot;box&quot;&gt;
+        &lt;textarea id=&quot;myTextarea&quot; class=&quot;text&quot;&gt;&lt;/textarea&gt;
+​    &lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">        let text = document.getElementById('myTextarea');
+
+​        text.addEventListener('input',function(e){
+
+​            const scrollHeight = text.scrollHeight
+
+​            const style = getComputedStyle(text)
+
+​            const borderTop = parseInt(style.borderTopWidth)
+
+​            const borderBottom = parseInt(style.borderBottomWidth)
+
+​            const height = scrollHeight + borderTop + borderBottom;
+
+​            text.style.height = height + 'px';
+
+​        })
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/h5-di-bu-shu-ru-kuang-bei-zhe-dang/">
+              <h3 class="post-title">
+                下一篇：h5底部输入框被遮挡
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

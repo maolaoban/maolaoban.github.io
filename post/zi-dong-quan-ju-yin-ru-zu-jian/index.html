@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Mao&#39;s Blog</title>
+<title>自动全局引入组件 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,26 +80,48 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">自动全局引入组件</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站-积累-分享">🏠 关于本站 积累 分享</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>QQ:1393867317<br>
-Email:1393867317@qq.com pengchaomao@gmail.com</p>
+            <pre><code class="language-javascript">// 基础组件的自动化全局注册
+import Vue from 'vue'
+const requireComponent = require.context(
+    // 其组件目录的相对路径
+    './',
+    // 是否查询其子目录
+    true,
+    // 匹配基础组件文件名的正则表达式
+    /\.vue$/
+  )
+  requireComponent.keys().forEach(fileName =&gt; {
+    // 获取组件配置
+    const componentConfig = requireComponent(fileName)
+    // 全局注册组件
+    Vue.component(
+        componentConfig.default.name,   // 此处的name,是组件属性定义的name
+        // 如果这个组件选项是通过 `export default` 导出的，
+        // 那么就会优先使用 `.default`，
+        // 否则回退到使用模块的根。
+        componentConfig.default
+    )
+  })
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/shu-zu-bian-ping-hua-qu-chu-chong-fu-shu-ju/">
+              <h3 class="post-title">
+                下一篇：数组扁平化去除重复数据
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
