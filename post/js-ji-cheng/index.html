@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>js继承 | Mao&#39;s Blog</title>
+<meta name="description" content="毛老板的博客">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891119618">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://maolaoban.github.io/">
+        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891119618" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://maolaoban.github.io/">
+        <h1 class="site-title">Mao&#39;s Blog</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/js-ji-cheng.png')">
+            </div>
+          
+          <h2 class="post-title">js继承</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="1通过原型链继承">1.通过原型链继承</h2>
+<p>父类的实例作为子类的原型</p>
+<pre><code>function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+
+function SubType(){
+    this.subproperty = false;
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+SubType.prototype.getSubValue = function(){
+    return this.subproperty;
+}
+
+var instance = new SubType();
+alert(instance.getSuperValue());
+</code></pre>
+<h2 id="借用构造函数">借用构造函数</h2>
+<pre><code>function SuperType(name){
+    this.name = name;
+}
+
+function SubType(){
+   //继承SuperType,同时还传递了参数
+   SuperType.call(this,&quot;maolaoban&quot;);
+   //实例属性
+   this.age = 29;
+}
+
+var instance = new SubType();
+alert(instance.name);
+alert(instance.age);
+</code></pre>
+<h2 id="组合继承">组合继承</h2>
+<p>将原型链和借用构造函数的结合到一块。<br>
+使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。<br>
+JavaScript中最常用的继承方式。</p>
+<pre><code>    function SuperType(name){
+        this.name = name;
+        this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];
+    }
+
+    SuperType.prototype.sayName = function(){
+        alert(this.name);
+    }
+
+    function SubType(name, age){
+        //继承属性
+        SuperType.call(this, name);
+
+        this.age = age;
+    }
+
+    //继承方法
+    SubType.prototype = new SuperType();
+    SubType.prototype.constructor = SubType;
+    SubType.prototype.sayAge = function(){
+        alert(this.age);
+    }
+
+    var instance = new SubType(&quot;maolaoban&quot;,20);
+    instance.colors.push(&quot;yellow&quot;);
+    alert(instance.colors);
+    instance.sayName();
+    instance.sayAge();
+</code></pre>
+<h2 id="原型式继承">原型式继承</h2>
+<pre><code>function object(o){
+   function F(){};
+   F.prototype = o;
+   return new F();
+}
+
+// var person = {
+//     name:&quot;maolaoban&quot;,
+//     friends:[&quot;Shelby&quot;,&quot;Court&quot;,&quot;wan&quot;]
+// }
+// var person1 = object(person);
+
+function Person(){
+   this.name = &quot;maolaoban&quot;;
+   this.friends = [&quot;Shelby&quot;];
+}
+
+var person1 = object(new Person());
+person1.name = &quot;mao&quot;;
+person1.friends.push(&quot;Rob&quot;);
+alert(person1.name);
+alert(person1.friends);
+</code></pre>
+<h2 id="寄生式继承">寄生式继承</h2>
+<p>寄生式继承是与原型式继承紧密相关的一种思路。<br>
+创建一个仅用于封装继承过程的函数，该函数内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。</p>
+<pre><code>    function object(o){
+        function F(){};
+        F.prototype = o;
+        return new F();
+    }
+
+    //给原型式继承套个壳子，加工一下
+    function createPerson(original){
+        var clone = object(original);
+        clone.sayHi = function(){
+            alert(&quot;Hi&quot;);
+        }
+        return clone;
+    }
+
+    var person = {
+        name:&quot;maolaoban&quot;,
+        friends:[&quot;Shelby&quot;,&quot;Court&quot;,&quot;wan&quot;]
+    }
+
+    var person1 = createPerson(person);
+    person1.sayHi();
+</code></pre>
+<h2 id="寄生组合式继承">寄生组合式继承</h2>
+<p>开发人员普遍认为寄生组合式继承是引用类型最理想的继承方式。</p>
+<pre><code>    function object(o){
+        function F(){};
+        F.prototype = o;
+        return new F();
+    }
+
+    function inheritPrototype(subType, superType){
+        var prototype = object(superType.prototype);//创建对象
+        prototype.constructor = subType;//增强对象
+        subType.prototype = prototype;//指定对象
+    }
+
+    function SuperType(name){
+        this.name = name;
+        this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];
+    }
+
+    SuperType.prototype.sayName = function(){
+        alert(this.name);
+    }
+
+    function SubType(name, age){
+        SuperType.call(this, name);
+        this.age = age;
+    }
+    
+    inheritPrototype(SubType,SuperType);
+
+    SubType.prototype.sayAge = function(){
+        alert(this.age);
+    }
+
+    var instance = new SubType(&quot;maolaoban&quot;,20);
+    instance.colors.push(&quot;yellow&quot;);
+    alert(instance.colors);
+    instance.sayName();
+    instance.sayAge();
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/han-shu-ke-li-hua/">
+              <h3 class="post-title">
+                下一篇：函数柯里化
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">毛老板的博客</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Mao</a> | <a class="rss" href="https://maolaoban.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>防止复制和修改复制内容 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,56 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
+            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/fang-zhi-fu-zhi-he-xiu-gai-fu-zhi-nei-rong.png')">
             </div>
           
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">防止复制和修改复制内容</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <ul>
+<li>
+<p>不想要别人复制网页内容可以使用：</p>
+<p>p{<br>
+user-select:none;<br>
+-webkit-user-select:none;<br>
+}</p>
+</li>
+<li>
+<p>修改复制的内容，就像一些网页，复制的时候会加入版权信息</p>
+ <p>
+     I'm maolaoban.
+     I'm maolaoban.
+     I'm maolaoban.
+     I'm maolaoban.
+ </p>
+ <script>
+     document.addEventListener('copy',function(event){
+         let clipboardData = event.clipboardData || window.clipboardData;
+         var copy = window.getSelection().toString();
+         if(copy){
+             event.preventDefault();
+             copy += '-----版权所属:maolaoban.---www.mddddddx.work------';
+             clipboardData.setData('text/plain',copy);
+         }
+     })
+ </script></li>
+</ul>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/ji-chong-shu-zu-qu-chong-de-fang-fa/">
+              <h3 class="post-title">
+                下一篇：几种数组去重的方法
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

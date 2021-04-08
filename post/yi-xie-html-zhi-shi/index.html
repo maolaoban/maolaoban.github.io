@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>一些HTML知识 | Mao&#39;s Blog</title>
+<meta name="description" content="毛老板的博客">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617891119618">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://maolaoban.github.io/">
+        <img class="avatar" src="https://maolaoban.github.io//images/avatar.png?v=1617891119618" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://maolaoban.github.io/">
+        <h1 class="site-title">Mao&#39;s Blog</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/yi-xie-html-zhi-shi.png')">
+            </div>
+          
+          <h2 class="post-title">一些HTML知识</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
+            
+          </div>
+          <div class="post-content">
+            <h2 id="1doctype的作用严格模式与混杂模式如何区分它们有何意义">1.Doctype的作用？严格模式与混杂模式如何区分？它们有何意义？</h2>
+<!DOCTYPE>声明不是HTML标签，它是指示web浏览器关于页面使用哪个规范来解析文档。
+<p><strong>严格模式</strong>：又称标准模式，是指浏览器按照W3C标准解析代码。<br>
+<strong>混杂模式</strong>：又称怪异模式或兼容模式，是指浏览器用自己的方式解析代码。页面以宽松的向后兼容的方式显示。<br>
+浏览器解析时到底使用严格模式还是混杂模式，与网页中的DTD直接相关。DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式。DOCTYPE 不存在或形式不正确会导致文档以怪异模式呈现。<br>
+<strong>HTML5没有严格和混杂之分。</strong></p>
+<h2 id="2link和import的区别">2.link和@import的区别</h2>
+<p>两种方式都是为了加载CSS<br>
+link属于HTML标签，可以定义RSS、rel连接属性，而@import是CSS提供的一种方式。<br>
+加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。<br>
+@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>
+可以通过 JS 操作 DOM ，插入link标签来改变样式；由于 DOM 方法是基于文档的，无法使用@import的方式插入样式。</p>
+<h2 id="3常见的浏览器兼容性问题">3.常见的浏览器兼容性问题</h2>
+<p><strong>不同浏览器的标签默认的padding和margin不同</strong><br>
+解决方案：css里写*{margin:0; padding:0}</p>
+<p><strong>IE6双边距问题，在IE6中设置float的同时又设置margin，就会出现双边距</strong><br>
+解决方案：设置display:inline</p>
+<p><strong>设置较小的高度标签（一般小于10px），在IE6，IE7中超出自己设置的高度</strong><br>
+解决方案：超出高度的标签设置overflow:hidden,或者设置line-height的值小于你的设置高度</p>
+<p><strong>图片默认间距</strong><br>
+解决方案：先display:block再用float</p>
+<p><strong>透明度：</strong><br>
+解决方案：<br>
+filter:alpha(opacity=50);<br>
+-moz-opacity:0.5;<br>
+-khtml-opacity: 0.5;<br>
+opacity: 0.5;</p>
+<p><strong>js中兼容性的写法</strong><br>
+var e = event || window.event;<br>
+var target = e.target || e.srcElement;</p>
+<h2 id="4iframe的缺点">4.iframe的缺点？</h2>
+<ol>
+<li>会产生很多页面，不容易管理。</li>
+<li>iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。</li>
+<li>代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化。</li>
+<li>很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差。</li>
+<li>iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。</li>
+</ol>
+<h2 id="5cookie-session和localstorage-以及sessionstorage之间的区别">5.Cookie、session和localStorage、以及sessionStorage之间的区别</h2>
+<ol>
+<li>cookie数据存放在客户的浏览器上，Cookie的内容主要包括：名字、值、过期时间、路径和域，单个cookie保存的数据不能超过4K。会话cookie保存在内存里,若设置了过期时间，浏览器就会把cookie保存到硬盘上。<br>
+session保存在服务器，session中保存的是对象，cookie中保存的是字符串 。</li>
+<li>session不能区分路径，同一个用户在访问一个网站期间，所有的session在任何一个地方都可以访问到，而cookie中如果设置了路径参数，那么同一个网站中不同路径下的cookie互相是访问不到的。</li>
+<li>sessionStorage、localStorage 都是保存在浏览器端、且同源的。<br>
+sessionStorage：仅在当前浏览器窗口关闭之前有效；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据。</li>
+<li>sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localstorage在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。</li>
+</ol>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/html-ye-mian-yuan-sheng-de-sheng-ming-zhou-qi-shi-jian/">
+              <h3 class="post-title">
+                下一篇：HTML页面原生的声明周期事件
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">毛老板的博客</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Mao</a> | <a class="rss" href="https://maolaoban.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

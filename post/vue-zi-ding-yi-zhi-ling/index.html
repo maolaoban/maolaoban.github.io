@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>Vue自定义指令 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,47 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
-            </div>
-          
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">Vue自定义指令</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <pre><code>Vue.directive('gqs',{
+bind() {
+  // 当指令绑定到 HTML 元素上时触发.**只调用一次**
+  console.log('bind triggerd')
+},
+inserted() {
+  // 当绑定了指令的这个HTML元素插入到父元素上时触发(在这里父元素是 `div#app`)**.但不保证,父元素已经插入了 DOM 文档.**
+  console.log('inserted triggerd')
+},
+updated() {
+  // 所在组件的`VNode`更新时调用.
+  console.log('updated triggerd')
+},
+componentUpdated() {
+  // 指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+  console.log('componentUpdated triggerd')
+  
+},
+unbind() {
+  // 只调用一次，指令与元素解绑时调用.
+  console.log('unbind triggerd')
+}})</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/fang-zhi-fu-zhi-he-xiu-gai-fu-zhi-nei-rong/">
+              <h3 class="post-title">
+                下一篇：防止复制和修改复制内容
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

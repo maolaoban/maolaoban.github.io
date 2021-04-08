@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>常见的排序算法 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,103 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
-            </div>
-          
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">常见的排序算法</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <pre><code>var arr = [1,4,15,47,50,3,5,26,13,10,9,40,36,42];
+</code></pre>
+<ul>
+<li>冒泡排序</li>
+</ul>
+<pre><code>    function bubleSort(arr){
+            for(let i = 0; i &lt; arr.length; i++){
+                for(let j = 0; j &lt; arr.length - i -1; j++){
+                    if(arr[j] &gt; arr[j + 1]){
+                        [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+                    }
+                }
+            }
+        };
+</code></pre>
+<ul>
+<li>选择排序</li>
+</ul>
+<pre><code>    function selectSort(arr){
+            for(let i = 0; i &lt; arr.length-1; i++){
+                for(let j = i; j &lt; arr.length; j++){
+                    if(arr[i] &gt; arr[j]){
+                        [arr[i],arr[j]] = [arr[j],arr[i]];
+                    }
+                }
+            }
+        }
+</code></pre>
+<ul>
+<li>插入排序</li>
+</ul>
+<pre><code>    function insertSort(arr){
+            for(let i = 1; i &lt; arr.length; i++){
+                for(let j = i; j &gt; 0; j--){
+                    if(arr[j] &lt; arr[j-1]){
+                        [arr[j],arr[j-1]] = [arr[j-1],arr[j]];
+                    }
+                }
+            }
+        }
+</code></pre>
+<ul>
+<li>快速排序</li>
+</ul>
+<pre><code>    function quickSort(arr){
+            if(arr.length &lt;= 1){
+                return arr;
+            }
+            var left = [],
+                right = [],
+                current = arr.splice(0,1);
+            for(let i = 0; i &lt; arr.length; i++){
+                if(arr[i] &lt; current){
+                    left.push(arr[i]);
+                }else{
+                    right.push(arr[i]);
+                }
+            }
+            return quickSort(left).concat(current,quickSort(right));
+        }
+</code></pre>
+<ul>
+<li>希尔排序</li>
+</ul>
+<pre><code>    function shellSort(arr){
+            for(let gap = Math.floor(arr.length/2); gap &gt; 0; gap = Math.floor(gap/2)){
+                //内部循环和插入排序一致，步长改为gap
+                for(let i = gap; i &lt; arr.length; i += gap){
+                    for(let j = i; j &gt; 0; j -= gap){
+                        if(arr[j] &lt; arr[j-gap]){
+                            [arr[j],arr[j-gap]] = [arr[j-gap],arr[j]];
+                        }
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(shellSort(arr));</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/html5-zi-ding-yi-shu-xing/">
+              <h3 class="post-title">
+                下一篇：HTML5自定义属性&amp;&amp;Vue事件委托
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

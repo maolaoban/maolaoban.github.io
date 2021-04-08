@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>函数柯里化 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,70 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
+            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/han-shu-ke-li-hua.png')">
             </div>
           
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">函数柯里化</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <p>首先，我们要知道什么叫柯里化？</p>
+<p>在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术。</p>
+<ul>
+<li>
+<p>举一个简单的例子</p>
+<p>//普通函数<br>
+function add(a + b){<br>
+return a + b;<br>
+}<br>
+add(1,3);</p>
+<p>//函数柯里化<br>
+function add(a){<br>
+return function(b){<br>
+return a + b;<br>
+}<br>
+}<br>
+//我们可以这样使用<br>
+add(1)(3)</p>
+</li>
+</ul>
+<p>如果要使用add(1)(2)(3)...(n),上面的写法也就无力回天了，这是我们就需要使用一个递归柯里化。</p>
+<ul>
+<li>
+<p>简单的实现</p>
+<p>const curry = (fn, ...args) =&gt;<br>
+args.length &lt; fn.length<br>
+? (...arguments) =&gt; curry(fn, ...args, ...arguments)<br>
+: fn(...args);</p>
+<pre><code> function sum (a,b,c){
+     return a + b + c;
+ }
+
+ var add = curry(sum);
+
+ console.log(add(1)(2)(3));//6
+ console.log(add(1)(2,3));//6
+ console.log(add(1,2)(3));//6
+ console.log(add(1,2,3));//6
+</code></pre>
+</li>
+</ul>
+<hr>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/yi-xie-html-zhi-shi/">
+              <h3 class="post-title">
+                下一篇：一些HTML知识
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

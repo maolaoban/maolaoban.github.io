@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>HTML5自定义属性&amp;&amp;Vue事件委托 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,88 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
-            </div>
-          
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">HTML5自定义属性&amp;&amp;Vue事件委托</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <p><strong>1. HTML5自定义属性</strong><br>
+在HTML5中提供了自定义属性，使用&quot;data-&quot;开头写在标签里，例如：</p>
+<pre><code>&lt;div data-name=&quot;maolaoban&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>在js中定义属性或者读取属性</p>
+<pre><code>var div = document.querySelector(&quot;div&quot;);
+//自定义
+div.dataset.age = 20;
+//读取
+console.log(div.dataset.name);//div.dataset['name']
+console.log(div.dataset.age);
+</code></pre>
+<p>自定义属性规范：<br>
+1.data-开头；<br>
+2.data-后必须至少有一个字符，多个单词使用-连接；<br>
+建议：<br>
+1.名称应该都使用小写；<br>
+2.名称中不要包含任何的特殊符号；<br>
+3.名称不要纯数值</p>
+<p><strong>2. Vue事件委托</strong></p>
+<pre><code>&lt;body&gt;
+&lt;div id=&quot;app&quot;&gt;
+    &lt;ul @click=&quot;popName&quot;&gt;
+        &lt;li v-for=&quot;(item,index) in list&quot; :data-index=&quot;index&quot;&gt;{{item.name}}:{{item.age}}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:'#app',
+        data:{
+            list:[
+                {
+                    name:'mao',
+                    age:20
+                },
+                {
+                    name:'lao',
+                    age:21
+                }
+                ,{
+                    name:'ban',
+                    age:22
+                }
+                ,{
+                    name:'ha',
+                    age:23
+                }
+            ]
+        },
+        methods: {
+            popName(event){
+                var e = event || window.event;
+                var target = e.target || e.srcElement;
+                if(target.nodeName.toLowerCase() == 'li'){
+                    console.log(this.list[e.target.dataset.index].name);
+                }
+            }
+        },
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/js-ji-cheng/">
+              <h3 class="post-title">
+                下一篇：js继承
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

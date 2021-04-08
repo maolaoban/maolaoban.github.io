@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>懒加载 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,64 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
-            </div>
-          
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">懒加载</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <p>挺直白的，直接上代码<br>
+第一种方法不断循环性能差，如果滑到底部刷新，所有图片都会加载。<br>
+第二张使用IntersectionObserver,使用方法可以看一下 <a href="http://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html">阮一峰博客</a><br>
+两种方式，推荐第二种!</p>
+<pre><code>var imgs = document.querySelectorAll('img');
+
+//监听scroll事件判断图片是否进入视口
+ var n = 0;
+  window.addEventListener('scroll',function(){
+      lazyload(imgs);
+  })
+  function lazyload(){
+      var h = window.innerHeight;
+      var s = document.documentElement.scrollTop || document.body.scrollTop;
+      for(var i=n; i&lt;imgs.length; i++){
+          if((h+s) &gt; imgs[i].offsetTop){
+              imgs[i].src = imgs[i].dataset.src;
+              n = i + 1;
+          }
+      }
+  }
+
+//使用IntersectionObserver
+if(IntersectionObserver){
+    let lazyImageObserver = new IntersectionObserver((entries, observer) =&gt; {
+        entries.forEach((entry,index) =&gt; {
+            //相对于浏览器视窗的相交率
+            if(entry.intersectionRatio &gt; 0){
+                entry.target.src = entry.target.dataset.src;
+                //当前图片加载完之后去掉监听
+                lazyImageObserver.unobserve(entry.target);
+            }
+        })
+    })
+    for(let i = 0; i &lt; imgs.length; i++){
+        lazyImageObserver.observe(imgs[i]);
+    }
+}
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/fang-dou-he-jie-liu/">
+              <h3 class="post-title">
+                下一篇：防抖和节流
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       

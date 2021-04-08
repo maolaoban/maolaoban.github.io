@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>重新开始的第一篇博客 | Mao&#39;s Blog</title>
+<title>防抖和节流 | Mao&#39;s Blog</title>
 <meta name="description" content="毛老板的博客">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,31 +80,58 @@
       <div class="content-container">
         <div class="post-detail">
           
-            <div class="feature-container" style="background-image: url('https://maolaoban.github.io//post-images/hello-start.jpg')">
-            </div>
-          
-          <h2 class="post-title">重新开始的第一篇博客</h2>
+          <h2 class="post-title">防抖和节流</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2021-04-06</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://maolaoban.github.io/tag/IFviRZyKr/">
-                    分享
-                    
-                  </a>
-                
-              </span>
+            <span><i class="icon-calendar-outline"></i> 2021-04-08</span>
             
           </div>
           <div class="post-content">
-            <p>祝你今天愉快😘</p>
+            <p><strong>防抖</strong>就是在触发事件后的n时间内只执行一次，如果在n时间内又触发了事件，则会重新计算函数执行时间。</p>
+<pre><code>//防抖
+function debounce(fn,wait) { 
+    let task;
+    return function (){
+        if(task){
+            clearTimeout(task);
+            console.log('清理定时器');
+        }
+        let immediately = !task;
+        task = setTimeout(() =&gt; {
+            task = null;
+        }, wait);
+        if(immediately){
+            fn.apply(this,arguments);
+        }
+    }
+}
+</code></pre>
+<p><strong>节流</strong>就是指连续触发事件但是在n时间内只执行一次函数。</p>
+<pre><code>//节流
+function throttle(fn,wait) {
+    let timer;
+    return function () {
+        if(!timer){
+            timer = setTimeout(() =&gt; {
+                timer = null;
+                fn.apply(this,arguments);
+            }, wait);
+        }
+      }
+}
+</code></pre>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://maolaoban.github.io/post/vue-zi-ding-yi-zhi-ling/">
+              <h3 class="post-title">
+                下一篇：Vue自定义指令
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
