@@ -6,7 +6,7 @@
 
 <title>no-cache和no-store | Mao&#39;s Blog</title>
 
-<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617893186177">
+<link rel="shortcut icon" href="https://maolaoban.github.io//favicon.ico?v=1617935158352">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maolaoban.github.io//styles/main.css">
@@ -179,7 +179,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1617893186177"
+            <form id="gridea-search-form" style="position: relative" data-update="1617935158352"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -240,28 +240,47 @@
     <div class="slogan gt-c-content-color-first">毛老板的博客</div>
     <div class="social-container">
         
-            
         
-            
         
-            
         
-            
         
-            
         
-            
+        
+        
+        
+        
+        
+        
         
     </div>
     <div class="footer-info">
         Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Mao</a>
     </div>
+    <div id="words">
+    </div>
 </div>
 
 <script>
-  hljs.initHighlightingOnLoad()
+    hljs.initHighlightingOnLoad()
+    let p = new Promise((resolve, reject) => {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://v1.hitokoto.cn/', true);
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function () {
+            // readyState为4的时候已接收完毕
+            if (xmlHttp.readyState === 4) {
+                // 状态码200表示成功
+                if (xmlHttp.status === 200) {
+                    resolve(xmlHttp.responseText);
+                }
+            }
+        };
+    });
+    p.then(res => {
+        let result = JSON.parse(res);
+        document.getElementById('words').innerHTML = result.hitokoto;
+    });
 </script>
-
     </div>
 </div>
 </body>
