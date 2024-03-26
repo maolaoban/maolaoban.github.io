@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://maolaoban.github.io</id>
+    <title>Mao&apos;s Blog</title>
+    <updated>2024-03-26T02:11:21.050Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://maolaoban.github.io"/>
+    <link rel="self" href="https://maolaoban.github.io/atom.xml"/>
+    <logo>https://maolaoban.github.io/images/avatar.png</logo>
+    <icon>https://maolaoban.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, Mao&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[禁用控制台]]></title>
+        <id>https://maolaoban.github.io/jin-yong-kong-zhi-tai/</id>
+        <link href="https://maolaoban.github.io/jin-yong-kong-zhi-tai/">
+        </link>
+        <updated>2022-01-17T03:25:50.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">setInterval(function () {
+  check()
+}, 4000)
+var check = function () {
+  function doCheck(a) {
+    if (('' + a / a)['length'] !== 1 || a % 20 === 0) {
+      ;(function () {}['constructor']('debugger')())
+    } else {
+      ;(function () {}['constructor']('debugger')())
+    }
+    doCheck(++a)
+  }
+  try {
+    doCheck(0)
+  } catch (err) {}
+}
+check()
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[检查当前元素在窗口内是否可见]]></title>
+        <id>https://maolaoban.github.io/jian-cha-dang-qian-yuan-su-zai-chuang-kou-nei-shi-fou-ke-jian/</id>
+        <link href="https://maolaoban.github.io/jian-cha-dang-qian-yuan-su-zai-chuang-kou-nei-shi-fou-ke-jian/">
+        </link>
+        <updated>2022-01-17T03:24:46.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">const elementIsVisibleInViewport = (el, partiallyVisible = false) =&gt; {
+  const { top, left, bottom, right } = el.getBoundingClientRect()
+  const { innerHeight, innerWidth } = window
+  return partiallyVisible
+    ? ((top &gt; 0 &amp;&amp; top &lt; innerHeight) || (bottom &gt; 0 &amp;&amp; bottom &lt; innerHeight)) &amp;&amp;
+        ((left &gt; 0 &amp;&amp; left &lt; innerWidth) || (right &gt; 0 &amp;&amp; right &lt; innerWidth))
+    : top &gt;= 0 &amp;&amp; left &gt;= 0 &amp;&amp; bottom &lt;= innerHeight &amp;&amp; right &lt;= innerWidth
+}
+
+// 事例
+elementIsVisibleInViewport(el) // 需要左右可见
+elementIsVisibleInViewport(el, true) // 需要全屏(上下左右)可以见
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[获取URL参数]]></title>
+        <id>https://maolaoban.github.io/huo-qu-url-can-shu/</id>
+        <link href="https://maolaoban.github.io/huo-qu-url-can-shu/">
+        </link>
+        <updated>2022-01-17T03:23:33.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">const getURLParameters = url =&gt;
+  (url.match(/([^?=&amp;]+)(=([^&amp;]*))/g) || []).reduce(
+    (a, v) =&gt; ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+    {}
+  )
+
+// 示例
+getURLParameters('http://url.com/page?n=Adam&amp;s=Smith') // {n: 'Adam', s: 'Smith'}
+getURLParameters('google.com') // {}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[页面滚动位置&&滚动到顶部]]></title>
+        <id>https://maolaoban.github.io/ye-mian-gun-dong-wei-zhi-andgun-dong-dao-ding-bu/</id>
+        <link href="https://maolaoban.github.io/ye-mian-gun-dong-wei-zhi-andgun-dong-dao-ding-bu/">
+        </link>
+        <updated>2022-01-17T03:20:39.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">const getScrollPosition = (el = window) =&gt; ({
+  x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+  y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+})
+
+// 事例
+getScrollPosition(); // {x: 0, y: 200}
+
+const scrollToTop = () =&gt; {
+  const c = document.documentElement.scrollTop || document.body.scrollTop
+  if (c &gt; 0) {
+    window.requestAnimationFrame(scrollToTop)
+    window.scrollTo(0, c - c / 8)
+  }
+}
+
+// 事例
+scrollToTop()
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[禁止右键，选择，复制]]></title>
+        <id>https://maolaoban.github.io/jin-zhi-you-jian-xuan-ze-fu-zhi/</id>
+        <link href="https://maolaoban.github.io/jin-zhi-you-jian-xuan-ze-fu-zhi/">
+        </link>
+        <updated>2022-01-17T03:19:44.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">['contextmenu', 'selectstart', 'copy'].forEach(function (ev) {
+  document.addEventListener(ev, function (event) {
+    return (event.returnValue = false)
+  })
+})
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[iOS底部安全边界]]></title>
+        <id>https://maolaoban.github.io/ios-di-bu-an-quan-bian-jie/</id>
+        <link href="https://maolaoban.github.io/ios-di-bu-an-quan-bian-jie/">
+        </link>
+        <updated>2022-01-17T03:17:39.000Z</updated>
+        <content type="html"><![CDATA[<p><code>padding-bottom: constant(safe-area-inset-bottom); 函数在iOS &lt; 11.2时生效</code></p>
+<p><code>padding-bottom: env(safe-area-inset-bottom);函数在iOS &gt;= 11.2时生效</code></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[深拷贝]]></title>
+        <id>https://maolaoban.github.io/shen-kao-bei/</id>
+        <link href="https://maolaoban.github.io/shen-kao-bei/">
+        </link>
+        <updated>2021-04-25T05:35:43.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">        var a = {
+            name:'mao',
+            age:20,
+            score:{
+                math:100,
+                eng:100
+            }
+        }
+        function deepCopy(obj){
+            var newObj = Array.isArray(obj)?[]:{};
+            for(var key in obj){
+                if(obj.hasOwnProperty(key)){
+                    if(typeof obj[key] === 'object'&amp;&amp; obj[key]!==null){
+                        newObj[key] = deepCopy(obj[key]);
+                    }else{
+                        newObj[key] = obj[key];
+                    }
+                }
+            }
+            return newObj;
+        }
+        var b = deepCopy(a);
+        console.log(b);</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[懒加载]]></title>
+        <id>https://maolaoban.github.io/lan-jia-zai/</id>
+        <link href="https://maolaoban.github.io/lan-jia-zai/">
+        </link>
+        <updated>2021-04-08T14:11:11.000Z</updated>
+        <content type="html"><![CDATA[<p>挺直白的，直接上代码<br>
+第一种方法不断循环性能差，如果滑到底部刷新，所有图片都会加载。<br>
+第二张使用IntersectionObserver,使用方法可以看一下 <a href="http://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html">阮一峰博客</a><br>
+两种方式，推荐第二种!</p>
+<pre><code>var imgs = document.querySelectorAll('img');
+
+//监听scroll事件判断图片是否进入视口
+ var n = 0;
+  window.addEventListener('scroll',function(){
+      lazyload(imgs);
+  })
+  function lazyload(){
+      var h = window.innerHeight;
+      var s = document.documentElement.scrollTop || document.body.scrollTop;
+      for(var i=n; i&lt;imgs.length; i++){
+          if((h+s) &gt; imgs[i].offsetTop){
+              imgs[i].src = imgs[i].dataset.src;
+              n = i + 1;
+          }
+      }
+  }
+
+//使用IntersectionObserver
+if(IntersectionObserver){
+    let lazyImageObserver = new IntersectionObserver((entries, observer) =&gt; {
+        entries.forEach((entry,index) =&gt; {
+            //相对于浏览器视窗的相交率
+            if(entry.intersectionRatio &gt; 0){
+                entry.target.src = entry.target.dataset.src;
+                //当前图片加载完之后去掉监听
+                lazyImageObserver.unobserve(entry.target);
+            }
+        })
+    })
+    for(let i = 0; i &lt; imgs.length; i++){
+        lazyImageObserver.observe(imgs[i]);
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[防抖和节流]]></title>
+        <id>https://maolaoban.github.io/fang-dou-he-jie-liu/</id>
+        <link href="https://maolaoban.github.io/fang-dou-he-jie-liu/">
+        </link>
+        <updated>2021-04-08T14:10:28.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>防抖</strong>就是在触发事件后的n时间内只执行一次，如果在n时间内又触发了事件，则会重新计算函数执行时间。</p>
+<pre><code class="language-javascript">    //防抖
+    function debounce(fn,wait) { 
+        let task;
+        return function (){
+            if(task){
+                clearTimeout(task);
+                console.log('清理定时器');
+            }
+            let immediately = !task;
+            task = setTimeout(() =&gt; {
+                task = null;
+            }, wait);
+            if(immediately){
+                fn.apply(this,arguments);
+            }
+        }
+    }
+</code></pre>
+<p><strong>节流</strong>就是指连续触发事件但是在n时间内只执行一次函数。</p>
+<pre><code class="language-javascript">    //节流
+    function throttle(fn,wait) {
+        let timer;
+        return function () {
+            if(!timer){
+                timer = setTimeout(() =&gt; {
+                    timer = null;
+                    fn.apply(this,arguments);
+                }, wait);
+            }
+          }
+    }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Vue自定义指令]]></title>
+        <id>https://maolaoban.github.io/vue-zi-ding-yi-zhi-ling/</id>
+        <link href="https://maolaoban.github.io/vue-zi-ding-yi-zhi-ling/">
+        </link>
+        <updated>2021-04-08T14:10:00.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>Vue.directive('gqs',{
+bind() {
+  // 当指令绑定到 HTML 元素上时触发.**只调用一次**
+  console.log('bind triggerd')
+},
+inserted() {
+  // 当绑定了指令的这个HTML元素插入到父元素上时触发(在这里父元素是 `div#app`)**.但不保证,父元素已经插入了 DOM 文档.**
+  console.log('inserted triggerd')
+},
+updated() {
+  // 所在组件的`VNode`更新时调用.
+  console.log('updated triggerd')
+},
+componentUpdated() {
+  // 指令所在组件的 VNode 及其子 VNode 全部更新后调用。
+  console.log('componentUpdated triggerd')
+  
+},
+unbind() {
+  // 只调用一次，指令与元素解绑时调用.
+  console.log('unbind triggerd')
+}})
+</code></pre>
+]]></content>
+    </entry>
+</feed>

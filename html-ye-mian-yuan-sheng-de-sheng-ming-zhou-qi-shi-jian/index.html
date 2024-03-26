@@ -1,0 +1,340 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>HTML页面原生的声明周期事件 | Mao&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://maolaoban.github.io/favicon.ico?v=1711419077907">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maolaoban.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mao&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1711419077907"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    HTML页面原生的声明周期事件
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-04-08 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <ul>
+<li>
+<p><strong>DOMContentLoaded</strong> —— 浏览器已完全加载 HTML，并构建了 DOM 树，但像&lt;img&gt;和样式表之类的外部资源可能尚未加载完成。可以查找DOM节点，并初始化接口。</p>
+</li>
+<li>
+<p><strong>load</strong> —— 浏览器不仅加载完成了 HTML，还加载完成了所有外部资源：图片，样式等。</p>
+</li>
+<li>
+<p><strong>beforeunload</strong> —— 用户正在离开：我们可以检查用户是否保存了更改，并询问他是否真的要离开。</p>
+</li>
+<li>
+<p><strong>unload</strong> —— 用户几乎已经离开了，但是我们仍然可以启动一些操作，例如发送统计数据。</p>
+<pre><code> document.addEventListener(&quot;DOMContentLoaded&quot;,()=&gt;{
+
+ })
+</code></pre>
+</li>
+</ul>
+<p>####window.onload</p>
+<ul>
+<li>
+<p>当整个页面，包括样式、图片和其它资源被完全加载完成时，会触发window对象上的load事件。</p>
+<pre><code>window.onload = function(){
+    alert('page loaded');
+}
+</code></pre>
+<p>####window.onunload</p>
+</li>
+<li>
+<p>当访问者离开页面时，window 对象上的 unload 事件就会被触发。我们可以在那里做一些不涉及延迟的操作，例如关闭相关的弹出窗口。<br>
+####window.onbeforeunload</p>
+</li>
+<li>
+<p>如果访问者触发了离开页面的导航（navigation）或试图关闭窗口，beforeunload 处理程序将要求进行更多确认.</p>
+</li>
+</ul>
+<p>####readyState<br>
+<code>document.readyState</code> 属性可以为我们提供当前加载状态的信息。<br>
+它有3个可能值：</p>
+<ul>
+<li><code>loading</code> 文档正在被加载。</li>
+<li><code>interactive</code> 文档被全部读取。</li>
+<li><code>complete</code> 文档被全部读取，并且所有资源（例如图片等）都已加载完成。</li>
+</ul>
+<p>我们可以检查 document.readyState 并设置一个处理程序，或在代码准备就绪时立即执行它。</p>
+<pre><code>if(document.readyState == 'loading){
+    document.addEventListener('DOMContentLoaded', ()=&gt;{
+
+    });
+}else{
+
+}
+</code></pre>
+<p>还有一个 readystatechange 事件，会在状态发生改变时触发。</p>
+<pre><code>document.addEventListener('readystatechange',()=&gt;{
+    console.log(document.readyState);
+})
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://maolaoban.github.io/zi-dong-quan-ju-yin-ru-zu-jian/" class="post-title gt-a-link">
+                    自动全局引入组件
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/maolaoban" target="_blank">@MAO</a>
+    </div>
+    <div id="words">
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+    let p = new Promise((resolve, reject) => {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://v1.hitokoto.cn/', true);
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function () {
+            // readyState为4的时候已接收完毕
+            if (xmlHttp.readyState === 4) {
+                // 状态码200表示成功
+                if (xmlHttp.status === 200) {
+                    resolve(xmlHttp.responseText);
+                }
+            }
+        };
+    });
+    p.then(res => {
+        let result = JSON.parse(res);
+        document.getElementById('words').innerHTML = result.hitokoto;
+    });
+</script>
+    </div>
+</div>
+</body>
+</html>

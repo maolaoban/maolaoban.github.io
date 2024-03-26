@@ -1,0 +1,329 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>一些HTML知识 | Mao&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://maolaoban.github.io/favicon.ico?v=1711419077907">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maolaoban.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mao&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1711419077907"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    一些HTML知识
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-04-08 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="1doctype的作用严格模式与混杂模式如何区分它们有何意义">1.Doctype的作用？严格模式与混杂模式如何区分？它们有何意义？</h2>
+<!DOCTYPE>声明不是HTML标签，它是指示web浏览器关于页面使用哪个规范来解析文档。
+<p><strong>严格模式</strong>：又称标准模式，是指浏览器按照W3C标准解析代码。<br>
+<strong>混杂模式</strong>：又称怪异模式或兼容模式，是指浏览器用自己的方式解析代码。页面以宽松的向后兼容的方式显示。<br>
+浏览器解析时到底使用严格模式还是混杂模式，与网页中的DTD直接相关。DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式。DOCTYPE 不存在或形式不正确会导致文档以怪异模式呈现。<br>
+<strong>HTML5没有严格和混杂之分。</strong></p>
+<h2 id="2link和import的区别">2.link和@import的区别</h2>
+<p>两种方式都是为了加载CSS<br>
+link属于HTML标签，可以定义RSS、rel连接属性，而@import是CSS提供的一种方式。<br>
+加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。<br>
+@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>
+可以通过 JS 操作 DOM ，插入link标签来改变样式；由于 DOM 方法是基于文档的，无法使用@import的方式插入样式。</p>
+<h2 id="3常见的浏览器兼容性问题">3.常见的浏览器兼容性问题</h2>
+<p><strong>不同浏览器的标签默认的padding和margin不同</strong><br>
+解决方案：css里写*{margin:0; padding:0}</p>
+<p><strong>IE6双边距问题，在IE6中设置float的同时又设置margin，就会出现双边距</strong><br>
+解决方案：设置display:inline</p>
+<p><strong>设置较小的高度标签（一般小于10px），在IE6，IE7中超出自己设置的高度</strong><br>
+解决方案：超出高度的标签设置overflow:hidden,或者设置line-height的值小于你的设置高度</p>
+<p><strong>图片默认间距</strong><br>
+解决方案：先display:block再用float</p>
+<p><strong>透明度：</strong><br>
+解决方案：<br>
+filter:alpha(opacity=50);<br>
+-moz-opacity:0.5;<br>
+-khtml-opacity: 0.5;<br>
+opacity: 0.5;</p>
+<p><strong>js中兼容性的写法</strong><br>
+var e = event || window.event;<br>
+var target = e.target || e.srcElement;</p>
+<h2 id="4iframe的缺点">4.iframe的缺点？</h2>
+<ol>
+<li>会产生很多页面，不容易管理。</li>
+<li>iframe框架结构有时会让人感到迷惑，如果框架个数多的话，可能会出现上下、左右滚动条，会分散访问者的注意力，用户体验度差。</li>
+<li>代码复杂，无法被一些搜索引擎索引到，这一点很关键，现在的搜索引擎爬虫还不能很好的处理iframe中的内容，所以使用iframe会不利于搜索引擎优化。</li>
+<li>很多的移动设备（PDA 手机）无法完全显示框架，设备兼容性差。</li>
+<li>iframe框架页面会增加服务器的http请求，对于大型网站是不可取的。</li>
+</ol>
+<h2 id="5cookie-session和localstorage-以及sessionstorage之间的区别">5.Cookie、session和localStorage、以及sessionStorage之间的区别</h2>
+<ol>
+<li>cookie数据存放在客户的浏览器上，Cookie的内容主要包括：名字、值、过期时间、路径和域，单个cookie保存的数据不能超过4K。会话cookie保存在内存里,若设置了过期时间，浏览器就会把cookie保存到硬盘上。<br>
+session保存在服务器，session中保存的是对象，cookie中保存的是字符串 。</li>
+<li>session不能区分路径，同一个用户在访问一个网站期间，所有的session在任何一个地方都可以访问到，而cookie中如果设置了路径参数，那么同一个网站中不同路径下的cookie互相是访问不到的。</li>
+<li>sessionStorage、localStorage 都是保存在浏览器端、且同源的。<br>
+sessionStorage：仅在当前浏览器窗口关闭之前有效；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据。</li>
+<li>sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localstorage在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://maolaoban.github.io/html-ye-mian-yuan-sheng-de-sheng-ming-zhou-qi-shi-jian/" class="post-title gt-a-link">
+                    HTML页面原生的声明周期事件
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/maolaoban" target="_blank">@MAO</a>
+    </div>
+    <div id="words">
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+    let p = new Promise((resolve, reject) => {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://v1.hitokoto.cn/', true);
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function () {
+            // readyState为4的时候已接收完毕
+            if (xmlHttp.readyState === 4) {
+                // 状态码200表示成功
+                if (xmlHttp.status === 200) {
+                    resolve(xmlHttp.responseText);
+                }
+            }
+        };
+    });
+    p.then(res => {
+        let result = JSON.parse(res);
+        document.getElementById('words').innerHTML = result.hitokoto;
+    });
+</script>
+    </div>
+</div>
+</body>
+</html>

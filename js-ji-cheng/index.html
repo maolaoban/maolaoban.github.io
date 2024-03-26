@@ -1,0 +1,444 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>js继承 | Mao&#39;s Blog</title>
+
+<link rel="shortcut icon" href="https://maolaoban.github.io/favicon.ico?v=1711419077907">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maolaoban.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mao&#39;s Blog
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1711419077907"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    js继承
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-04-08 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="1通过原型链继承">1.通过原型链继承</h2>
+<p>父类的实例作为子类的原型</p>
+<pre><code>function SuperType(){
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function(){
+    return this.property;
+}
+
+function SubType(){
+    this.subproperty = false;
+}
+
+//继承了SuperType
+SubType.prototype = new SuperType();
+SubType.prototype.getSubValue = function(){
+    return this.subproperty;
+}
+
+var instance = new SubType();
+alert(instance.getSuperValue());
+</code></pre>
+<h2 id="借用构造函数">借用构造函数</h2>
+<pre><code>function SuperType(name){
+    this.name = name;
+}
+
+function SubType(){
+   //继承SuperType,同时还传递了参数
+   SuperType.call(this,&quot;maolaoban&quot;);
+   //实例属性
+   this.age = 29;
+}
+
+var instance = new SubType();
+alert(instance.name);
+alert(instance.age);
+</code></pre>
+<h2 id="组合继承">组合继承</h2>
+<p>将原型链和借用构造函数的结合到一块。<br>
+使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。<br>
+JavaScript中最常用的继承方式。</p>
+<pre><code>    function SuperType(name){
+        this.name = name;
+        this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];
+    }
+
+    SuperType.prototype.sayName = function(){
+        alert(this.name);
+    }
+
+    function SubType(name, age){
+        //继承属性
+        SuperType.call(this, name);
+
+        this.age = age;
+    }
+
+    //继承方法
+    SubType.prototype = new SuperType();
+    SubType.prototype.constructor = SubType;
+    SubType.prototype.sayAge = function(){
+        alert(this.age);
+    }
+
+    var instance = new SubType(&quot;maolaoban&quot;,20);
+    instance.colors.push(&quot;yellow&quot;);
+    alert(instance.colors);
+    instance.sayName();
+    instance.sayAge();
+</code></pre>
+<h2 id="原型式继承">原型式继承</h2>
+<pre><code>function object(o){
+   function F(){};
+   F.prototype = o;
+   return new F();
+}
+
+// var person = {
+//     name:&quot;maolaoban&quot;,
+//     friends:[&quot;Shelby&quot;,&quot;Court&quot;,&quot;wan&quot;]
+// }
+// var person1 = object(person);
+
+function Person(){
+   this.name = &quot;maolaoban&quot;;
+   this.friends = [&quot;Shelby&quot;];
+}
+
+var person1 = object(new Person());
+person1.name = &quot;mao&quot;;
+person1.friends.push(&quot;Rob&quot;);
+alert(person1.name);
+alert(person1.friends);
+</code></pre>
+<h2 id="寄生式继承">寄生式继承</h2>
+<p>寄生式继承是与原型式继承紧密相关的一种思路。<br>
+创建一个仅用于封装继承过程的函数，该函数内部以某种方式来增强对象，最后再像真地是它做了所有工作一样返回对象。</p>
+<pre><code>    function object(o){
+        function F(){};
+        F.prototype = o;
+        return new F();
+    }
+
+    //给原型式继承套个壳子，加工一下
+    function createPerson(original){
+        var clone = object(original);
+        clone.sayHi = function(){
+            alert(&quot;Hi&quot;);
+        }
+        return clone;
+    }
+
+    var person = {
+        name:&quot;maolaoban&quot;,
+        friends:[&quot;Shelby&quot;,&quot;Court&quot;,&quot;wan&quot;]
+    }
+
+    var person1 = createPerson(person);
+    person1.sayHi();
+</code></pre>
+<h2 id="寄生组合式继承">寄生组合式继承</h2>
+<p>开发人员普遍认为寄生组合式继承是引用类型最理想的继承方式。</p>
+<pre><code>    function object(o){
+        function F(){};
+        F.prototype = o;
+        return new F();
+    }
+
+    function inheritPrototype(subType, superType){
+        var prototype = object(superType.prototype);//创建对象
+        prototype.constructor = subType;//增强对象
+        subType.prototype = prototype;//指定对象
+    }
+
+    function SuperType(name){
+        this.name = name;
+        this.colors = [&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];
+    }
+
+    SuperType.prototype.sayName = function(){
+        alert(this.name);
+    }
+
+    function SubType(name, age){
+        SuperType.call(this, name);
+        this.age = age;
+    }
+    
+    inheritPrototype(SubType,SuperType);
+
+    SubType.prototype.sayAge = function(){
+        alert(this.age);
+    }
+
+    var instance = new SubType(&quot;maolaoban&quot;,20);
+    instance.colors.push(&quot;yellow&quot;);
+    alert(instance.colors);
+    instance.sayName();
+    instance.sayAge();
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://maolaoban.github.io/han-shu-ke-li-hua/" class="post-title gt-a-link">
+                    函数柯里化
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/maolaoban" target="_blank">@MAO</a>
+    </div>
+    <div id="words">
+    </div>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+    let p = new Promise((resolve, reject) => {
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://v1.hitokoto.cn/', true);
+        xmlHttp.send();
+        xmlHttp.onreadystatechange = function () {
+            // readyState为4的时候已接收完毕
+            if (xmlHttp.readyState === 4) {
+                // 状态码200表示成功
+                if (xmlHttp.status === 200) {
+                    resolve(xmlHttp.responseText);
+                }
+            }
+        };
+    });
+    p.then(res => {
+        let result = JSON.parse(res);
+        document.getElementById('words').innerHTML = result.hitokoto;
+    });
+</script>
+    </div>
+</div>
+</body>
+</html>
