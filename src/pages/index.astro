@@ -16,17 +16,12 @@ const posts = (await getCollection("blog"))?.sort(
     (blogEntryA.data.pubDate || new Date()).getTime()
 );
 
-const data = await fetch('https://v1.hitokoto.cn').then((response) =>
-  response.json()
-);
-
-let myText = data.hitokoto || '';
-
 ---
 
 <script>
   import { stagger, spring, timeline, type TimelineDefinition } from "motion";
   import { loaderAnimation } from "../lib/constants";
+  import { onMount } from "solid-js";
   const cards = document.querySelectorAll(".card");
 
   const sequence = [
@@ -44,6 +39,18 @@ let myText = data.hitokoto || '';
   ];
 
   timeline(sequence as TimelineDefinition);
+
+  onMount(async () => {
+    const hitokotoText = (document.querySelector('#hitokoto-text'))!
+    try {
+      const data = await fetch('https://v1.hitokoto.cn').then((response) =>
+        response.json()
+      );
+      hitokotoText.innerHTML = data.hitokoto;
+    } catch (error) {
+      hitokotoText.innerHTML = '祝你今天愉快！';
+    }
+  });
 </script>
 
 <Layout
@@ -78,10 +85,6 @@ let myText = data.hitokoto || '';
       <div class="flex flex-col gap-4">
         {
           posts?.slice(0, 3).map((post) => (
-            // <a
-            //   class="text-sm md:text-base decoration-none flex justify-between"
-            //   href={`/blog/${post.id}`}
-            // >
             <div class="list-none w-full text-neutral-100 hover:text-neutral-400 ease-in-out transition-colors border-b-neutral-400 border-dashed border-b-1 my-0">
               <p class="inline-block whitespace-nowrap text-xs">
                 {post.data.title}
@@ -102,7 +105,7 @@ let myText = data.hitokoto || '';
       </div>
     </Card>
     <Card colSpan="md:col-span-1" rowSpan="md:row-span-1">
-      <p class="text-xs">{myText}</p>
+      <p class="text-xs" id="hitokoto-text"></p>
     </Card>
   </main>
 </Layout>

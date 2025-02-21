@@ -1,18 +1,21 @@
 ---
-title: "Hello, World"
-description: "this is a post example"
-pubDate: 2023-01-21
+title: "新的开始"
+description: "记录从新开始的第一篇博客"
+pubDate: 2025-02-21
 category: "intro"
 draft: false
 ---
 
 # Hi there!
 
-This Markdown file creates a page at `your-domain.com/blog/post1/`
+ ```ts
+ console.log("Hello World!")
+ ```
 
-It probably isn't styled much, but Markdown does support:
 
-- **bold** and _italics._
-- lists
-- [links](https://astro.build)
-- and more!
+## Hi
+- **加粗** and _斜体_
+
+- [链接](https://github.com/maolaoban)
+
+---
