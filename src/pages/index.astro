@@ -15,7 +15,6 @@ const posts = (await getCollection("blog"))?.sort(
     (blogEntryB.data.pubDate || new Date()).getTime() -
     (blogEntryA.data.pubDate || new Date()).getTime()
 );
-
 ---
 
 <script>
@@ -41,14 +40,14 @@ const posts = (await getCollection("blog"))?.sort(
   timeline(sequence as TimelineDefinition);
 
   onMount(async () => {
-    const hitokotoText = (document.querySelector('#hitokoto-text'))!
+    const hitokotoText = document.querySelector("#hitokoto-text")!;
     try {
-      const data = await fetch('https://v1.hitokoto.cn').then((response) =>
+      const data = await fetch("https://v1.hitokoto.cn").then((response) =>
         response.json()
       );
       hitokotoText.innerHTML = data.hitokoto;
     } catch (error) {
-      hitokotoText.innerHTML = '祝你今天愉快！';
+      hitokotoText.innerHTML = "祝你今天愉快！";
     }
   });
 </script>
@@ -68,7 +67,7 @@ const posts = (await getCollection("blog"))?.sort(
     <Card
       colSpan="md:col-span-1"
       rowSpan="md:row-span-1"
-      title="Countries I visited"
+      title="Cities I visited"
       href="travel"
       colorText="text-neutral-900"
     >
