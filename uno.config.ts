@@ -9,14 +9,15 @@ export default defineConfig({
       "src/components/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}}",
       "src/pages/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}}",
       "src/layouts/**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}}"
-    ],  },
+    ],
+  },
   theme: {
     boxShadow: {
       custom: `2px 2px 0`,
       "custom-hover": `1px 1px 0`,
     },
     fontFamily: {
-      sans: ["CabinetGrotesk", "Satoshi"],
+      sans: ["ArkPixel", "CabinetGrotesk", "Satoshi"],
     },
     gridTemplateRows: {
       "auto-250": "repeat(auto-fill, 250px)",

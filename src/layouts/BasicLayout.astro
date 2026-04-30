@@ -138,10 +138,18 @@ const schema =
     font-display: swap;
     font-weight: 100 1000;
   }
+  @font-face {
+    font-family: "ArkPixel";
+    src: url("/fonts/fusion-pixel-12px-monospaced-zh_hans.otf")
+      format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 
   body {
     margin: 0;
-    font-family: "Satoshi", sans-serif;
+    font-family: "ArkPixel", "Satoshi", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -151,10 +159,10 @@ const schema =
   h4,
   h5,
   h6 {
-    font-family: "Cabinet Grotesk", sans-serif;
+    font-family: "ArkPixel", "Cabinet Grotesk", sans-serif;
   }
   p {
-    font-family: "Satoshi";
+    font-family: "ArkPixel", "Satoshi";
   }
 
   b {

@@ -14,7 +14,7 @@ import Card from "./Card/index.astro";
     const now = new Date();
 
     if (timeDisplay) {
-      timeDisplay.textContent = 'My time：' + formatTimeForChina(now);
+      timeDisplay.textContent = "My time：" + formatTimeForChina(now);
       timeDisplay.setAttribute("datetime", now.toISOString());
     }
   }
@@ -32,7 +32,7 @@ import Card from "./Card/index.astro";
   <time
     datetime=""
     id="timeDisplay"
-    class="text-2xl xl:text-2xl xl:whitespace-nowrap w-100 xl:w-100 h-100% font-serif flex justify-left items-center"
+    class="text-2xl xl:text-2xl xl:whitespace-nowrap w-100 xl:w-100 h-100% flex justify-left items-center"
   >
     {formatTimeForChina(getCurrentTimeInItaly())}
   </time>
