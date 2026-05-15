@@ -4,7 +4,7 @@ export const LINKS = {
   medium: "",
   discord: "",
   dribble: "",
-  email: "1393867317@qq.com",
+  x: "https://x.com/mao22475420",
 };
 
 export const loaderAnimation = [

@@ -11,7 +11,7 @@ const LINKS = [
 ];
 ---
 
-<Card colSpan="md:col-span-1" rowSpan="md:row-span-2" title="Link">
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-2" title="Links">
   <div class="gap-2 mt-4 w-full grid grid-cols-4">
     {
       LINKS.map((link) => (
@@ -19,13 +19,15 @@ const LINKS = [
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="w-12 h-12 border border-darkslate-100 rounded-lg overflow-hidden hover:translate-y-[-3px] ease-in-out duration-100"
+          class="w-12 h-12 border border-neutral-400 border-dashed border-1 rounded-md
+          overflow-hidden hover:translate-y-[-3px] ease-in-out duration-100 p-0.5
+          "
         >
           <Image
             width="30"
             height="30"
             src={link.icon}
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover rounded-md"
             alt={link.name}
           />
         </a>
