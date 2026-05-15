@@ -1,7 +1,7 @@
 ---
 title: "删除cookie"
 description: "删除cookie"
-pubDate: "2025-02-19"
+pubDate: "2026-05-15"
 ---
 
 max-age: 将要过期的最大秒数，设置为 -1 即可删除

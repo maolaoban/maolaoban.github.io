@@ -1,7 +1,7 @@
 ---
 title: "TS练习"
 description: "TS练习"
-pubDate: "2025-05-21"
+pubDate: "2026-05-15"
 ---
 
 ``````typescript
@@ -19,7 +19,7 @@ interface Todo {
 
 type MyPick<T, K extends keyof T = keyof T> = {
 
-[P in K]: T[P]
+[P in K]: TP
 
 }
 

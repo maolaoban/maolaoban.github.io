@@ -1,7 +1,7 @@
 ---
 title: "ios和android关于new Date()兼容性差异"
 description: "ios和android关于new Date()兼容性差异"
-pubDate: "2025-02-19"
+pubDate: "2026-05-15"
 ---
 
 ### ios和android关于new Date()兼容性差异

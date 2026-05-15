@@ -1,7 +1,7 @@
 ---
 title: "defer、async和动态脚本"
 description: "defer、async和动态脚本"
-pubDate: "2021-01-08"
+pubDate: "2026-05-15"
 ---
 
 ### defer、async和动态脚本

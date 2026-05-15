@@ -1,7 +1,7 @@
 ---
 title: "HTML页面的原生声明周期"
 description: "HTML页面的原生声明周期"
-pubDate: "2020-12-21"
+pubDate: "2026-05-15"
 ---
 
 ###HTML页面原生的声明周期事件
