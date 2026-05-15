@@ -1,0 +1,35 @@
+---
+import Card from "./Card/index.astro";
+import { Image } from "astro:assets";
+
+const LINKS = [
+  {
+    name: "github",
+    url: "https://maolaoban.github.io/energy-label-for-workers/",
+    icon: "https://maolaoban.github.io/favicon.ico",
+  },
+];
+---
+
+<Card colSpan="md:col-span-1" rowSpan="md:row-span-2" title="Link">
+  <div class="gap-2 mt-4 w-full grid grid-cols-4">
+    {
+      LINKS.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-12 h-12 border border-darkslate-100 rounded-lg overflow-hidden hover:translate-y-[-3px] ease-in-out duration-100"
+        >
+          <Image
+            width="30"
+            height="30"
+            src={link.icon}
+            class="w-full h-full object-cover"
+            alt={link.name}
+          />
+        </a>
+      ))
+    }
+  </div>
+</Card>
