@@ -19,7 +19,8 @@
       "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/页面停留时长.md\")",
       "Bash(curl -s \"https://api.github.com/repos/maolaoban/knowledge/contents/%E9%80%90%E6%AD%A5%E6%89%A7%E8%A1%8C\")",
       "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/%E9%80%90%E6%AD%A5%E6%89%A7%E8%A1%8C\")",
-      "Bash(gh run:*)"
+      "Bash(node:*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }

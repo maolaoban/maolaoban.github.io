@@ -1,14 +1,22 @@
 ---
 import Card from "./Card/index.astro";
 import { LINKS } from "../lib/constants";
+import { Icon } from "astro-icon/components";
+
+const ICON_MAP: Record<string, string> = {
+  github: "ri:github-fill",
+  x: "ri:twitter-x-fill",
+  linkedin: "ri:linkedin-box-fill",
+  medium: "ri:medium-fill",
+  discord: "ri:discord-fill",
+  dribble: "ri:dribbble-fill",
+};
 ---
 
 <Card colSpan="md:col-span-1" rowSpan="md:row-span-3">
   <div class="h-full">
     <header class="flex items-center">
-      <h1 class="text-white text-xl font-bold">
-        Contact me
-      </h1>
+      <h1 class="text-white text-xl font-bold">Contact me</h1>
     </header>
     <address class="flex flex-col mt-4">
       <h2 class="text-gray-500">Email</h2>
@@ -16,10 +24,22 @@ import { LINKS } from "../lib/constants";
     </address>
     <div class="flex flex-col mt-4 w-fit">
       <h2 class="text-gray-500">Socials</h2>
-      <ul>
-        <li>
-          <a href={LINKS.github} target="_blank">Github</a>
-        </li>
+      <ul class="flex gap-4 mt-2">
+        {
+          Object.entries(LINKS).map(
+            ([key, value]) =>
+              value && (
+                <li>
+                  <a href={value} target="_blank" rel="noopener noreferrer">
+                    <Icon
+                      name={ICON_MAP[key] || "ri:links-fill"}
+                      class="h-6 w-6"
+                    />
+                  </a>
+                </li>
+              ),
+          )
+        }
       </ul>
     </div>
   </div>
