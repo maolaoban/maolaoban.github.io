@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(gh repo:*)",
+      "Bash(gh api:*)",
+      "Bash(gh auth:*)",
+      "Bash(curl -s https://api.github.com/repos/maolaoban/knowledge)",
+      "Bash(curl -s \"https://api.github.com/repos/maolaoban/knowledge/git/trees/main?recursive=1\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/CSS超出省略.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/深拷贝.md\")",
+      "Bash(curl -s \"https://api.github.com/repos/maolaoban/knowledge/contents/逐步执行\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/函数柯里化.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/浏览器缓存机制.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/排序算法.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/useToggle.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/图片懒加载.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/一键复制.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/页面停留时长.md\")",
+      "Bash(curl -s \"https://api.github.com/repos/maolaoban/knowledge/contents/%E9%80%90%E6%AD%A5%E6%89%A7%E8%A1%8C\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/maolaoban/knowledge/main/%E9%80%90%E6%AD%A5%E6%89%A7%E8%A1%8C\")"
+    ]
+  }
+}
