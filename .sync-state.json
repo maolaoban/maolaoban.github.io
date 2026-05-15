@@ -9,7 +9,6 @@
     "ios和android关于new Date()兼容性差异.md": "knowledge/ios和android关于new Date()兼容性差异.md",
     "js下载文件.md": "knowledge/js下载文件.md",
     "no-store和no-cache.md": "knowledge/no-store和no-cache.md",
-    "test.md": "knowledge/test.md",
     "textarea高度自适应.md": "knowledge/textarea高度自适应.md",
     "uni-app生命周期.md": "knowledge/uni-app生命周期.md",
     "useToggle.md": "knowledge/useToggle.md",
@@ -42,5 +41,5 @@
     "页面停留时长.md": "knowledge/页面停留时长.md",
     "页面滚动位置&&滚动到顶部.md": "knowledge/页面滚动位置&&滚动到顶部.md"
   },
-  "lastSync": "2026-05-15T09:06:36.951Z"
+  "lastSync": "2026-05-15T09:11:03.384Z"
 }
