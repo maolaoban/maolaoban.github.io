@@ -8,6 +8,9 @@ on:
   # 允许你在 GitHub 上的 Actions 标签中手动触发此“工作流程”
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 # 允许 job 克隆 repo 并创建一个 page deployment
 permissions:
   contents: read
