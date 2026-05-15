@@ -1,7 +1,7 @@
 ---
 title: "uni-app生命周期"
 description: "uni-app生命周期"
-pubDate: "2026-05-15"
+pubDate: "2025-02-19"
 ---
 
 ####应用声明周期

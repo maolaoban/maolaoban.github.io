@@ -1,7 +1,7 @@
 ---
 title: "使用CSS3伪元素实现自动打字动画"
 description: "使用CSS3伪元素实现自动打字动画"
-pubDate: "2026-05-15"
+pubDate: "2025-02-19"
 ---
 
 ```html

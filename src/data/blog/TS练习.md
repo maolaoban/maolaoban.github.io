@@ -1,7 +1,7 @@
 ---
 title: "TS练习"
 description: "TS练习"
-pubDate: "2026-05-15"
+pubDate: "2025-05-14"
 ---
 
 ``````typescript

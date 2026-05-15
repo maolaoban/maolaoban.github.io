@@ -1,7 +1,7 @@
 ---
 title: "CSS超出省略"
 description: "CSS超出省略"
-pubDate: "2026-05-15"
+pubDate: "2025-02-19"
 ---
 
 ```css

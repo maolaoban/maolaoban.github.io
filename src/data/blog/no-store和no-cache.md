@@ -1,7 +1,7 @@
 ---
 title: "no-store和no-cache"
 description: "no-store和no-cache"
-pubDate: "2026-05-15"
+pubDate: "2025-02-19"
 ---
 
 `no-cache` 和 `no-store` 用作控制缓存，被服务器通过响应头 `Cache-Control`传递给客户端

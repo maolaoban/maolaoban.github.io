@@ -1,7 +1,7 @@
 ---
 title: "组件挂载到DOM"
 description: "组件挂载到DOM"
-pubDate: "2026-05-15"
+pubDate: "2025-02-19"
 ---
 
 ```js
