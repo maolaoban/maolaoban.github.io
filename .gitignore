@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # sync state
 .sync-state.json
+
+
+.mimocode/
